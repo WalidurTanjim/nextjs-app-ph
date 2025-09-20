@@ -1,3 +1,4 @@
+import NotFoundPage from '@/app/not-found';
 import React from 'react';
 
 const UserDetailsPage = ({ params }) => {
@@ -28,16 +29,20 @@ const UserDetailsPage = ({ params }) => {
 
     const singleData = data.find(d => d?.id == id);
 
-    return (
-        <div className='userDetailsPage container mx-auto w-full px-6 lg:px-8 py-8'>
-            <h1 className='text-center text-2xl font-medium text-slate-700'>User Details Page</h1>
-            <div className="mt-8">
-                <p>ID: {id}</p>
-                <h1>Name: {singleData?.name}</h1>
-                <p>Description: {singleData?.description}</p>
+    if (singleData) {
+        return (
+            <div className='userDetailsPage container mx-auto w-full px-6 lg:px-8 py-8'>
+                <h1 className='text-center text-2xl font-medium text-slate-700'>User Details Page</h1>
+                <div className="mt-8">
+                    <p>ID: {id}</p>
+                    <h1>Name: {singleData?.name}</h1>
+                    <p>Description: {singleData?.description}</p>
+                </div>
             </div>
-        </div>
-    );
+        );
+    }else{
+        return <NotFoundPage />
+    }
 };
 
 export default UserDetailsPage;
