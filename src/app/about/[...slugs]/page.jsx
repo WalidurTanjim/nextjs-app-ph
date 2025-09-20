@@ -2,7 +2,7 @@ import React from 'react';
 
 const AboutSlugPages = async({params}) => {
     const URLParams = await params;
-    console.log(URLParams?.slugs)
+    // console.log(URLParams?.slugs)
 
     return (
         <div className='aboutSlugPages'>
