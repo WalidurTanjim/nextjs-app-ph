@@ -1,14 +1,13 @@
-"use client";
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
 import MealSearchInput from './components/MealSearchInput';
 
-const MealsPage = () => {
-    const meals = [];
+const MealsPage = async({searchParams}) => {
+    const query = await searchParams;
+    
     // fetch all meals
     const fetchMeals = async () => {
         try {
-            const res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`);
+            const res = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query?.search}`);
             const data = await res.json();
             return data?.meals;
         }catch(err){
@@ -16,6 +15,8 @@ const MealsPage = () => {
             return [];
         }
     }
+
+    const meals = await fetchMeals();
 
     return (
         <div className='meals'>
