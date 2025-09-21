@@ -1,8 +1,9 @@
 import NotFoundPage from '@/app/not-found';
 import React from 'react';
 
-const UserDetailsPage = ({ params }) => {
-    const id = params?.id;
+const UserDetailsPage = async({ params }) => {
+    const propsParams = await params;
+    const id = await propsParams?.id;
 
     const data = [
         {
