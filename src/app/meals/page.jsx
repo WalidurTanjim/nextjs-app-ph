@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import MealSearchInput from './components/MealSearchInput';
+import style from "./meals.module.css";
 
 const MealsPage = async({searchParams}) => {
     const query = await searchParams;
@@ -20,7 +21,7 @@ const MealsPage = async({searchParams}) => {
 
     return (
         <div className='meals'>
-            <div className="container mx-auto w-full px-6 lg:px-8 py-8">
+            <div className="container mx-auto w-full px-6 lg:px-8 py-8 testing-purpose-css-class">
                 <h1 className="text-center text-2xl text-slate-700 font-medium">All Meals</h1>
 
                 {/* search functionality */}
@@ -33,7 +34,7 @@ const MealsPage = async({searchParams}) => {
                                 <Link key={meal?.idMeal} href={`/meals/${meal?.idMeal}`}>
                                     <div className='border border-gray-300 rounded p-2 hover:shadow-md cursor-pointer'>
                                         <p><span className='font-medium text-slate-700'>Id:</span> {meal?.idMeal}</p>
-                                        <p><span className='font-medium text-slate-700'>Name:</span> {meal?.strMeal}</p>
+                                        <p className={style['post-title']}><span className='font-medium text-slate-700'>Name:</span> {meal?.strMeal}</p>
                                         <p><span className='font-medium text-slate-700'>Description:</span> {meal?.strInstructions?.slice(0, 150)}...</p>
                                     </div>
                                 </Link>
