@@ -1,12 +1,13 @@
+import Link from 'next/link';
 import React from 'react';
 
-export const getPosts = async() => {
+export const getPosts = async () => {
     const res = await fetch('https://jsonplaceholder.typicode.com/posts');
     const data = await res.json();
     return data;
 }
 
-const PostsPage = async() => {
+const PostsPage = async () => {
     const posts = await getPosts();
 
     return (
@@ -18,11 +19,13 @@ const PostsPage = async() => {
                     {
                         posts?.map(post => {
                             return (
-                                <div key={post?.id} className='border rounded-md border-gray-300 p-2 hover:shadow-md hover:cursor-pointer'>
-                                    <p><span className='text-slate-700 font-medium'>ID:</span> {post?.id}</p>
-                                    <p><span className='text-slate-700 font-medium'>Title:</span> {post?.title}</p>
-                                    <p><span className='text-slate-700 font-medium'>Body:</span> {post?.body}</p>
-                                </div>
+                                <Link key={post?.id} href={`/posts/${post?.id}`}>
+                                    <div className='border rounded-md border-gray-300 p-2 hover:shadow-md hover:cursor-pointer'>
+                                        <p><span className='text-slate-700 font-medium'>ID:</span> {post?.id}</p>
+                                        <p className='font-medium'><span className='text-slate-700 font-medium'>Title:</span> {post?.title}</p>
+                                        <p><span className='text-slate-700 font-medium'>Body:</span> {post?.body}</p>
+                                    </div>
+                                </Link>
                             )
                         })
                     }
